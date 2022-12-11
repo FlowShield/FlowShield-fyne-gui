@@ -21,6 +21,7 @@ func parseURL(urlStr string) *url.URL {
 
 func welcomeScreen(_ fyne.Window) fyne.CanvasObject {
 	logo := canvas.NewImageFromResource(data.FyneScene)
+	//logo_flowshield := canvas.NewImageFromFile("/Users/libiao/DATA/ICODE/FlowShield/fyne-gui/cmd/fyne_demo/logo.png")
 	logo.FillMode = canvas.ImageFillContain
 	if fyne.CurrentDevice().IsMobile() {
 		logo.SetMinSize(fyne.NewSize(192, 192))
@@ -29,14 +30,14 @@ func welcomeScreen(_ fyne.Window) fyne.CanvasObject {
 	}
 
 	return container.NewCenter(container.NewVBox(
-		widget.NewLabelWithStyle("Welcome to the Fyne toolkit demo app", fyne.TextAlignCenter, fyne.TextStyle{Bold: true}),
+		widget.NewLabelWithStyle("Welcome to FlowShield Security Network", fyne.TextAlignCenter, fyne.TextStyle{Bold: true}),
 		logo,
 		container.NewHBox(
-			widget.NewHyperlink("fyne.io", parseURL("https://fyne.io/")),
+			widget.NewHyperlink("flowshield.xyz", parseURL("https://flowshield.xyz")),
 			widget.NewLabel("-"),
-			widget.NewHyperlink("documentation", parseURL("https://developer.fyne.io/")),
+			widget.NewHyperlink("documentation", parseURL("https://www.flowshield.xyz/flowshield_docs")),
 			widget.NewLabel("-"),
-			widget.NewHyperlink("sponsor", parseURL("https://fyne.io/sponsor/")),
+			widget.NewHyperlink("OpenSource", parseURL("https://github.com/flowshield")),
 		),
 		widget.NewLabel(""), // balance the header on the tutorial screen we leave blank on this content
 	))

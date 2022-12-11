@@ -21,19 +21,21 @@ const preferenceCurrentTutorial = "currentTutorial"
 var topWindow fyne.Window
 
 func main() {
-	a := app.NewWithID("io.fyne.demo")
+	a := app.NewWithID("cli.flowshield.xyz")
 	a.SetIcon(theme.FyneLogo())
+	a.Settings().SetTheme(theme.DarkTheme())
 	makeTray(a)
 	logLifecycle(a)
-	w := a.NewWindow("Fyne Demo")
+	w := a.NewWindow("FlowShield Network Dao")
 	topWindow = w
+	//a.SendNotification(fyne.NewNotification("🛡Welcome FlowShield Network", "Guarding your network security is our mission and responsibility."))
 
 	w.SetMainMenu(makeMenu(a, w))
 	w.SetMaster()
 
 	content := container.NewMax()
-	title := widget.NewLabel("Component name")
-	intro := widget.NewLabel("An introduction would probably go\nhere, as well as a")
+	title := widget.NewLabel("FlowShield Network")
+	intro := widget.NewLabel("Guarding your network security is our mission and responsibility.")
 	intro.Wrapping = fyne.TextWrapWord
 	setTutorial := func(t tutorials.Tutorial) {
 		if fyne.CurrentDevice().IsMobile() {
@@ -109,7 +111,8 @@ func makeMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 		w := a.NewWindow("Fyne Settings")
 		w.SetContent(settings.NewSettings().LoadAppearanceScreen(w))
 		w.Resize(fyne.NewSize(480, 480))
-		w.Show()
+		w.SetFixedSize(true)
+		w.CenterOnScreen()
 	}
 	settingsItem := fyne.NewMenuItem("Settings", openSettings)
 	settingsShortcut := &desktop.CustomShortcut{KeyName: fyne.KeyComma, Modifier: fyne.KeyModifierShortcutDefault}
@@ -175,11 +178,11 @@ func makeMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 
 func makeTray(a fyne.App) {
 	if desk, ok := a.(desktop.App); ok {
-		h := fyne.NewMenuItem("Hello", func() {})
-		menu := fyne.NewMenu("Hello World", h)
+		h := fyne.NewMenuItem("Welcome FlowShield Network", func() {})
+		menu := fyne.NewMenu("Welcome FlowShield Network", h)
 		h.Action = func() {
 			log.Println("System tray menu tapped")
-			h.Label = "Welcome"
+			h.Label = "Welcome FlowShield Network"
 			menu.Refresh()
 		}
 		desk.SetSystemTrayMenu(menu)
@@ -235,10 +238,10 @@ func makeNav(setTutorial func(tutorial tutorials.Tutorial), loadPrevious bool) f
 	}
 
 	themes := container.NewGridWithColumns(2,
-		widget.NewButton("Dark", func() {
+		widget.NewButton("STATUS", func() {
 			a.Settings().SetTheme(theme.DarkTheme())
 		}),
-		widget.NewButton("Light", func() {
+		widget.NewButton("LOGIN", func() {
 			a.Settings().SetTheme(theme.LightTheme())
 		}),
 	)

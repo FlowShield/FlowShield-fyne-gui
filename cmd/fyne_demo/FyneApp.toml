@@ -1,5 +1,5 @@
 [Details]
   Icon = "../../theme/icons/fyne.png"
-  Name = "Fyne Demo"
-  ID = "io.fyne.demo"
+  Name = "FlowShield Security Network"
+  ID = "cli.flowshield.xyz"
   Build = 6
